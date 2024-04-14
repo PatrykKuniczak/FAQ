@@ -1,4 +1,3 @@
-// Strona FAQ//////
 
 if (document.body.classList.contains('page-template-faq')) {
 	const rightInner = document.querySelector('.aq__right-inner');
@@ -46,13 +45,11 @@ const updateRightInnerHeight = (answerHeight, nextSiblingAfterClick, isPlusBtnCl
 const downloadQuestionHeight = () => {
 	const answerBtns = document.querySelectorAll('.aq__block-item-sign');
 	const answers = document.querySelectorAll('.aq__block-item .aq__block-item-bottom');
-	// let smallBtnClicked = true;
 
 	answerBtns.forEach(answerBtn => {
 		answerBtn.classList.add('plus');
 		answerBtn.addEventListener('click', () => {
 			const minusBtn = answerBtn.classList.contains('minus');
-			// console.log(plusBtn);
 			if (minusBtn) {
 				answerBtn.classList.remove('minus');
 				answerBtn.classList.add('plus');
@@ -74,7 +71,6 @@ const downloadQuestionHeight = () => {
 			const firstBlock = document.querySelector('.aq__block.first');
 			const nextSiblingAfterClick = firstBlock.nextElementSibling;
 			updateRightInnerHeight(clickedAnswer, nextSiblingAfterClick, minusBtn);
-			// smallBtnClicked = !smallBtnClicked;
 		});
 	});
 };

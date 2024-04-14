@@ -1,25 +1,49 @@
 .aq {
-    &__outer{
-        @media(max-width: 575px){
-            position: inherit !important;
-            opacity: 1 !important;
-            visibility: visible !important;
-            pointer-events: all !important;
-        }
-    }
+	&__outer {
+		max-width: 1800px;
+		margin: 0 auto 120px;
+		width: auto !important;
+		@media (max-width: 1920px) {
+			margin: 0px 63px 120px 63px;
+		}
+		@media (max-width: 1600px) {
+			margin: 0px 25px 120px;
+		}
+		@media (max-width: 575px) {
+			margin: 0px 25px 100px;
+		}
+		@media (max-width: 575px) {
+			position: inherit !important;
+			opacity: 1 !important;
+			visibility: visible !important;
+			pointer-events: all !important;
+		}
+	}
 	&__inner {
-        max-width: 100% !important;
+		max-width: 100% !important;
 		padding: 40px 0px 0px 0px !important;
 		@media (max-width: 991px) {
 			padding: 40px 0px 0px 0px !important;
 		}
 	}
-    &__right-inner{
-        width: 90%;
-        @media (max-width:1440px) {
-            width: 100%;
-        }
-    }
+	&__right {
+		overflow: hidden;
+		&-inner {
+			width: 90%;
+			position: relative;
+			margin-bottom: 30px;
+			@media (max-width: 1199px) {
+				margin-bottom: 30px;
+			}
+
+			@media (max-width: 991px) {
+				margin-bottom: 17px;
+			}
+			@media (max-width: 767px) {
+				width: 100%;
+			}
+		}
+	}
 
 	&__left {
 		padding-left: min(0%, 150px) !important;
@@ -34,9 +58,9 @@
 			display: flex;
 			flex-direction: column;
 			gap: 5px;
-		} 
+		}
 		.aq__btn {
-			padding: 21px 35px;;
+			padding: 21px 35px;
 			border-radius: 100px;
 			background-color: var(--white);
 			border: none;
@@ -45,38 +69,61 @@
 			cursor: pointer;
 			transition: 0.3s;
 		}
-		.active {
+		.active-faq-btn {
 			background-color: var(--gold);
 			color: var(--white);
 		}
-		.aq__btn:hover {
+		.active-faq-btn :hover {
 			background-color: var(--black);
 			color: var(--white);
 		}
 	}
 	&__block {
-    //         order: 2;
-    // transform: scaleY(0);
-    // transform-origin: top;
-    // transition: transform 0.4s ease;
-    // // max-height: 0;
-    // overflow: hidden;
+		position: relative;
+		transition: 0.4s ease;
 
-        @media(max-width:380px){
-            margin-bottom: 70px !important;
-        }
+		@media (max-width: 380px) {
+			margin-bottom: 70px !important;
+		}
+	}
+	&__block:last-of-type{
+		margin-bottom: 0 !important;
 	}
 
-    // .show{
-
-    //     transform: scaleY(1);
-    // max-height: 1000px;
-
-    // }
-    .order-2{
-        order:1;
-    }
+	.order-2 {
+		order: 1;
+	}
 	.first {
 		order: 0;
 	}
 }
+
+.page-template-faq {
+	.aq__block-item-question-text {
+		font-weight: 400;
+		line-height: 30px;
+		@media (max-width: 575px) {
+			line-height: 20px;
+			font-weight: 500;
+		}
+	}
+	.aq__block-item-top {
+		margin-bottom: 30px;
+		@media (max-width: 767px) {
+			margin-bottom: 23px;
+			padding-top: 14px;
+		}
+	}
+	.aq__block-head {
+		@media (max-width: 575px) {
+			margin-bottom: 20px;
+		}
+	}
+
+	.aq__block-item-sign svg {
+		@media (max-width: 575px) {
+			width: 23px;
+		}
+	}
+}
+

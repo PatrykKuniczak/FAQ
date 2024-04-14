@@ -1,51 +1,9 @@
 // Strona FAQ//////
 
 if (document.body.classList.contains('page-template-faq')) {
-	let totalHeight = 0;
 	const rightInner = document.querySelector('.aq__right-inner');
 	let previousHeight = rightInner.offsetHeight;
 
-	// const updateRightInnerHeight = (anwserHeight, nextSiblingAfterClick, smallBtnClicked) => {
-	// 	let anwserHeightNumber = 0;
-	// 	anwserHeightNumber = parseInt(anwserHeight);
-	// 	const firstBlock = document.querySelector('.aq__block.first');
-	// 	const nextSibling = firstBlock.nextElementSibling;
-	// 	// console.log(anwserHeightNumber);
-
-	// 	if (firstBlock && nextSibling) {
-	// 		const firstBlockHeight = firstBlock.offsetHeight;
-	// 		const nextSiblingHeight = nextSibling.offsetHeight;
-	// 		const newTotalHeight = firstBlockHeight + nextSiblingHeight;
-	// 		rightInner.style.height = `${newTotalHeight}px`;
-
-    //         rightInner.style.height = `${newTotalHeight}px`;
-    //         console.log(smallBtnClicked);
-	// 		if (smallBtnClicked === true && nextSiblingAfterClick) {
-	// 			console.log('kliknięto w plus');
-	// 			const nextSiblingAfterClickHeight = nextSiblingAfterClick.offsetHeight;
-	// 			const newTotalHeight = firstBlockHeight + nextSiblingAfterClickHeight + anwserHeightNumber;
-	// 			rightInner.style.transition = 'height 0.5s ease';
-	// 			rightInner.style.height = `${newTotalHeight}px`;
-	// 		} else {
-	// 			if (nextSiblingAfterClick) {
-	// 				console.log('kliknięto w minus');
-	// 				const nextSiblingAfterClickHeight = nextSiblingAfterClick.offsetHeight;
-	// 				const newTotalHeight = firstBlockHeight + nextSiblingAfterClickHeight;
-	// 				rightInner.style.height = `${newTotalHeight}px`;
-	// 			}
-	// 		}
-	// 		rightInner.previousHeight = newTotalHeight;
-
-	// 		anwserHeightNumber = 0;
-
-	// 		if (window.innerWidth < 767) {
-	// 			rightInner.style.height = 'auto';
-	// 		}
-
-	// 		return newTotalHeight;
-	// 	}
-	// 	return 0;
-    // };
 const updateRightInnerHeight = (answerHeight, nextSiblingAfterClick, isPlusBtnClicked) => {
 	let answerHeightNumber = parseInt(answerHeight);
 	const firstBlock = document.querySelector('.aq__block.first');
@@ -60,14 +18,14 @@ const updateRightInnerHeight = (answerHeight, nextSiblingAfterClick, isPlusBtnCl
 
 		if (nextSiblingAfterClick) {
             const nextSiblingAfterClickHeight = nextSiblingAfterClick.offsetHeight;
-            // console.log(isPlusBtnClicked);
-			if (isPlusBtnClicked) {
-				console.log('kliknięto w plus');
+            console.log(isPlusBtnClicked);
+			if (!isPlusBtnClicked) {
+				 console.log('kliknięto w plus');
 				const newTotalHeight = firstBlockHeight + nextSiblingAfterClickHeight + answerHeightNumber;
 				rightInner.style.transition = 'height 0.5s ease';
 				rightInner.style.height = `${newTotalHeight}px`;
 			} else {
-				console.log('kliknięto w minus');
+				 console.log('kliknięto w minus');
 				const newTotalHeight = firstBlockHeight + nextSiblingAfterClickHeight;
 				rightInner.style.height = `${newTotalHeight}px`;
 			}
@@ -85,27 +43,24 @@ const updateRightInnerHeight = (answerHeight, nextSiblingAfterClick, isPlusBtnCl
 	}
 	return 0;
 };
-
 const downloadQuestionHeight = () => {
 	const answerBtns = document.querySelectorAll('.aq__block-item-sign');
 	const answers = document.querySelectorAll('.aq__block-item .aq__block-item-bottom');
+	// let smallBtnClicked = true;
 
 	answerBtns.forEach(answerBtn => {
-
 		answerBtn.classList.add('plus');
-
-        answerBtn.addEventListener('click', () => {
-        
-            const isPlusBtnClicked = answerBtn.classList.contains('plus');
-            console.log(isPlusBtnClicked);
-			if (isPlusBtnClicked) {
-				answerBtn.classList.remove('plus');
-				answerBtn.classList.add('minus');
-				console.log('kliknięto w plus1');
-			} else {
+		answerBtn.addEventListener('click', () => {
+			const minusBtn = answerBtn.classList.contains('minus');
+			// console.log(plusBtn);
+			if (minusBtn) {
 				answerBtn.classList.remove('minus');
 				answerBtn.classList.add('plus');
-				console.log('kliknięto w minus1');
+				console.log('dodaje klase plus');
+			} else {
+				answerBtn.classList.remove('plus');
+				answerBtn.classList.add('minus');
+				console.log('dodaje klase minus');
 			}
 			answers.forEach(answer => {
 				answer.style.display = 'block';
@@ -118,52 +73,11 @@ const downloadQuestionHeight = () => {
 			});
 			const firstBlock = document.querySelector('.aq__block.first');
 			const nextSiblingAfterClick = firstBlock.nextElementSibling;
-			updateRightInnerHeight(clickedAnswer, nextSiblingAfterClick, isPlusBtnClicked);
+			updateRightInnerHeight(clickedAnswer, nextSiblingAfterClick, minusBtn);
+			// smallBtnClicked = !smallBtnClicked;
 		});
 	});
 };
-
-
-
-
-
-
-	// const downloadQuestionHeight = () => {
-	// 	const answerBtns = document.querySelectorAll('.aq__block-item-sign');
-	// 	const answers = document.querySelectorAll('.aq__block-item .aq__block-item-bottom');
-	// 	let clickedAnswer;
-
-	// 	answerBtns.forEach(answerBtn => {
-	// 		let smallBtnClicked = true;
-	// 		answerBtn.addEventListener('click', () => {
-	// 			const plusBtn = answerBtn.classList.contains('active');
-	// 			if (plusBtn) {
-	// 				answerBtn.classList.remove('minus');
-	// 				answerBtn.classList.add('plus');
-	// 				console.log('dodaje klase plus');
-	// 			} else {
-	// 				answerBtn.classList.remove('plus');
-	// 				answerBtn.classList.add('minus');
-	// 				console.log('dodaje klase minus');
-	// 			}
-	// 			answers.forEach(answer => {
-	// 				answer.style.display = 'block';
-	// 			});
-	// 			const answerBtnArray = Array.from(answerBtns);
-	// 			const clickedIndex = answerBtnArray.indexOf(answerBtn);
-
-	// 			clickedAnswer = window.getComputedStyle(answers[clickedIndex]).height;
-	// 			answers.forEach(answer => {
-	// 				answer.style.display = '';
-	// 			});
-	// 			console.log(clickedAnswer);
-	// 			const firstBlock = document.querySelector('.aq__block.first');
-	// 			const nextSiblingAfterClick = firstBlock.nextElementSibling;
-	// 			updateRightInnerHeight(clickedAnswer, nextSiblingAfterClick, smallBtnClicked);
-	// 			smallBtnClicked = !smallBtnClicked;
-	// 		});
-	// 	});
-	// };
 
 	window.addEventListener('resize', () => {
 		updateRightInnerHeight();
@@ -237,3 +151,5 @@ const downloadQuestionHeight = () => {
 		updateRightInnerHeight();
 	});
 }
+
+
